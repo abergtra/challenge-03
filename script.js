@@ -34,7 +34,6 @@ function passwordLength() {
       alert ("Please choose a password length between 8 and 128!");
     } else {
       return leng;
-      var content = passwordContent();
     }
 }
 
@@ -55,18 +54,18 @@ function generatePassword() {
 
 //confirm type of content in password
 function passwordContent() {
-  var cuppercase = confirm("Would you like to use uppercase letters?");
-  var clowercase = confirm("Would you like to use lowercase letters?");
-  var cnumbers = confirm("would you like to use numbers?");
-  var csymbols = confirm("would you like to use special characters?");
+  var upper = confirm("Would you like to use uppercase letters?");
+  var lower = confirm("Would you like to use lowercase letters?");
+  var numer = confirm("would you like to use numbers?");
+  var special = confirm("would you like to use special characters?");
 
-  while (!(cuppercase || clowercase || cnumbers || csymbols)) {
-    alert("You must select at least one character type!");
+  while (!(upper || lower || numer || special)) {
+    alert("You must select at least 1 of the following: Upper Case Letter, Lower Case Letter, Numerical, Special Character.");
 
-    cuppercase = confirm("Would you like to use uppercase letters?");
-    clowercase = confirm("Would you like to use lowercase letters?");
-    cnumbers = confirm("would you like to use numbers?");
-    csymbols = confirm("would you like to use special characters?");
+    upper = confirm("Would you like to use uppercase letters?");
+    lower = confirm("Would you like to use lowercase letters?");
+    numer = confirm("would you like to use numbers?");
+    special = confirm("would you like to use special characters?");
   }
 }
 
@@ -74,22 +73,13 @@ function passwordContent() {
 //assign random values to password array
 function generateX() {
   const xarr = [];
+  var content = passwordContent();
+  upper && xarr.push(getUpperCase());
+  lower && xarr.push(getLowerCase());
+  numer && xarr.push(getNumerical());
+  special && xarr.push(getSpecialCharacter());
 
-  xarr.push(getUpperCase());
-  
-  xarr.push(getLowerCase());
-  
-  xarr.push(getNumerical());
-  
-  xarr.push(getSpecialCharacter());
-
-  if (xarr.length > 0) {
-    return xs[Math.floor(Math.random() * xs.length)];
-  } else {
-    alert ("You must select at leaset 1 of the following: Upper Case Letter, Lower Case Letter, Numerical, Special Character.")
-  }
-    
-
+  return xs[Math.floor(Math.random() * xs.length)];
   
 }
 // Get references to the #generate element
