@@ -4,7 +4,7 @@ var LowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"
 var Numeric = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 var SpecialCharacter = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "=", "[", "]" ];
 
-var length;
+var leng;
 var upper;
 var lower;
 var numer;
@@ -17,25 +17,11 @@ var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", function () {
   password = generatePassword();
   document.getElementById("password").placeholder = password;
-});
-
-// Functions to randomly select characters
-//function getLowerCase() {
-  //return LowerCase[Math.floor(Math.random() * LowerCase.length)];
-//}
-//function getUpperCase() {
- // return UpperCase[Math.floor(Math.random() * UpperCase.length)];
-//}
-//function getNumeric() {
- // return Numeric[Math.floor(Math.random() * Numeric.length)];
-//}
-//function getSpecialCharacter() {
-  //return SpecialCharacter[Math.floor(Math.random() * SpecialCharacter.length)];
-//}
+}, 1000);
 
 //generate the password
 function generatePassword() {
-  length = passwordLength();
+  leng = passwordLength();
 
   //select password character criteria
   upper = confirm("Would you like to use uppercase letters?");
@@ -48,7 +34,7 @@ function generatePassword() {
   var pass = [];
 
   //fill password array with random content to fill chosen length
-  for (var i = 0; i < length; i++) {
+  for (var i = 0; i < leng; i++) {
     var randoChosen = chosen[Math.floor(Math.random() * chosen.length)];
     pass.push(randoChosen);
   }
@@ -67,13 +53,13 @@ function passPlacement(password) {
 
 // prompt password length between 8 and 128
 function passwordLength() {
-  length = parseInt(prompt("How long would you like your password to be?","insert password length between 8-128"));
-  if ( isNaN(length)){
+  leng = parseInt(prompt("How long would you like your password to be?","insert password length between 8-128"));
+  if ( isNaN(leng)){
     alert ("Please input a number!");
-  } else if (length < 8 || length > 128){
-      length = parseInt(prompt("Please choose a password length between 8 and 128!"));
+  } else if (leng < 8 || leng > 128){
+      leng = parseInt(prompt("Please choose a password length between 8 and 128!"));
   } else {
-      return length;
+      return leng;
     };
 }
 
@@ -87,53 +73,54 @@ function passwordContent() {
   } 
   //choice combo: 4 selected
   else if (upper === true && lower === true && numer === true && special === true) {
-    chosen = upper.concat(lower, numer, special);
+    chosen = UpperCase.concat(LowerCase, Numeric, SpecialCharacter);
   }  
   //choice combo: 3 selected
   else if (upper === true && lower === false && numer === true && special === true) {
-    chosen = upper.concat(numer, special);
+    chosen = UpperCase.concat(Numeric, SpecialCharacter);
   }
   else if (upper === true && lower === true && numer === false && special === true) {
-    chosen = upper.concat(lower, special);
+    chosen = UpperCase.concat(LowerCase, SpecialCharacter);
   }
   else if (upper === true && lower === true && numer === true && special === false) {
-    chosen = upper.concat(numer, lower);
+    chosen = UpperCase.concat(Numeric, LowerCase);
   }
   else if (upper === false && lower === true && numer === true && special === true) {
-    chosen = lower.concat(numer, special);
+    chosen = LowerCase.concat(Numeric, SpecialCharacter);
   }
   //choice combo: 2 selected
   else if (upper === true && lower === true && numer === false && special === false) {
-    chosen = upper.concat(lower);
+    chosen = UpperCase.concat(LowerCase);
   }
   else if (upper === true && lower === false && numer === true && special === false) {
-    chosen = upper.concat(numer);
+    chosen = UpperCase.concat(Numeric);
   }
   else if (upper === true && lower === false && numer === false && special === true) {
-    chosen = upper.concat(special);
+    chosen = UpperCase.concat(SpecialCharacter);
   }
   else if (upper === false && lower === true && numer === true && special === false) {
-    chosen = lower.concat(numer);
+    chosen = LowerCase.concat(Numeric);
   }
   else if (upper === false && lower === true && numer === false && special === true) {
-    chosen = lower.concat(special);
+    chosen = LowerCase.concat(SpecialCharacter);
   }
   else if (upper === false && lower === false && numer === true && special === true) {
-    chosen = numer.concat(special);
+    chosen = Numeric.concat(SpecialCharacter);
   }
   //choice combo: 1 selected
   else if (upper === true && lower === false && numer === false && special === false) {
-    chosen = upper;
+    chosen = UpperCase;
   }
   else if (upper === false && lower === true && numer === false && special === false) {
-    chosen = lower;
+    chosen = LowerCase;
   }
   else if (upper === false && lower === false && numer === true && special === false) {
-    chosen = numer;
+    chosen = Numeric;
   }
   else if (upper === false && lower === false && numer === false && special === true) {
-    chosen = special;
+    chosen = SpecialCharacter;
   };
+  return chosen;
 }
 
 
