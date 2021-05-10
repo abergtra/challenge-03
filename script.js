@@ -17,17 +17,18 @@ var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", function () {
   password = generatePassword();
   document.getElementById("password").placeholder = password;
-}, 1000);
+});
 
 //generate the password
 function generatePassword() {
   leng = passwordLength();
+  alert("You have selected a password length of: " + leng);
 
   //select password character criteria
   upper = confirm("Would you like to use uppercase letters?");
   lower = confirm("Would you like to use lowercase letters?");
-  numer = confirm("would you like to use numbers?");
-  special = confirm("would you like to use special characters?");
+  numer = confirm("Would you like to use numbers?");
+  special = confirm("Would you like to use special characters?");
   chosen = passwordContent();
 
   //create empty password array 
@@ -37,18 +38,18 @@ function generatePassword() {
   for (var i = 0; i < leng; i++) {
     var randoChosen = chosen[Math.floor(Math.random() * chosen.length)];
     pass.push(randoChosen);
-  }
+  };
 
   //join array to create password and convert to string
   var password = pass.join("");
   passPlacement(password);
   return password;
-}
+};
 
 //place password in text box
 function passPlacement(password) {
   document.getElementById("password").textContent = password;
-}
+};
 
 
 // prompt password length between 8 and 128
@@ -61,7 +62,7 @@ function passwordLength() {
   } else {
       return leng;
     };
-}
+};
 
 
 //establish password criteria
@@ -121,7 +122,7 @@ function passwordContent() {
     chosen = SpecialCharacter;
   };
   return chosen;
-}
+};
 
 
 
