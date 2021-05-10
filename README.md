@@ -13,7 +13,7 @@ This site will generate a password according to the following user-input paramet
 
 The password parameters are determined by a series of prompts that occur after pressing the "Generate Password" button seen below:
 
-![AltText](./ReadMe Images/User Interface.png)
+![AltText](images/01_UI.png)
 
 ## User Interaction
 
@@ -21,7 +21,7 @@ User feedback is collected through the following prompts:
 
 To specify password length:
 
-![AltText](./ReadMe Images/01_prompt.png)
+![AltText](images/01_prompt.png)
 
 
 ## Author
