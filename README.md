@@ -23,6 +23,21 @@ To specify password length:
 
 ![AltText](images/01_prompt.png)
 
+![AltText](images/02_prompt.png)
+
+![AltText](images/03_prompt.png)
+
+![AltText](images/04_prompt.png)
+
+![AltText](images/05_prompt.png)
+
+![AltText](images/06_prompt.png)
+
+![AltText](images/07_prompt.png)
+
+![AltText](images/08_prompt.png)
+
+![AltText](images/09_prompt.png)
 
 ## Author
 
