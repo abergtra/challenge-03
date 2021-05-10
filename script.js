@@ -1,47 +1,50 @@
 // Establish string of characters
+var UpperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var LowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var Numeric = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+var SpecialCharacter = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "=", "[", "]" ];
 
-var UpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var LowerCase = "abcdefghijklmnopqrstuvwxyz";
-var Numeric = "0123456789";
-var SpecialCharacter = "!@#$%^&*()_+=[]";
-var leng = 0;
-var content = 0;
+var length;
+var upper;
+var lower;
+var numer;
+var special;
+var chosen;
+
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
+// Add event listener to generate button
+generateBtn.addEventListener("click", function () {
+  ps = generatePassword();
+  document.getElementById("password").placeholder = ps;
+});
 
 // Functions to randomly select characters
 function getLowerCase() {
   return LowerCase[Math.floor(Math.random() * LowerCase.length)];
 }
-
 function getUpperCase() {
   return UpperCase[Math.floor(Math.random() * UpperCase.length)];
 }
-
 function getNumeric() {
   return Numeric[Math.floor(Math.random() * Numeric.length)];
 }
-
 function getSpecialCharacter() {
   return SpecialCharacter[Math.floor(Math.random() * SpecialCharacter.length)];
 }
 
-// prompt password length between 8 and 128
-function passwordLength() {
-  var leng = prompt("How long would you like your password to be?","insert password length between 8-128");
-  if ( isNaN(leng)){
-    alert ("Please input a number!");
-  } else 
-    if (leng < 8 || leng > 128){
-      alert ("Please choose a password length between 8 and 128!");
-    } else {
-      return leng;
-    }
-}
-
 //generate the password
 function generatePassword() {
-  var leng = passwordLength();
-  alert("you chose password length:" + leng);
-  let pass = "";
+  length = passwordLength();
+  alert("you chose password length: " + length);
+
+  //select password character criteria
+  upper = confirm("Would you like to use uppercase letters?");
+  lower = confirm("Would you like to use lowercase letters?");
+  numer = confirm("would you like to use numbers?");
+  special = confirm("would you like to use special characters?");
+  chosen = passwordContent();
+  var pass = [];
 
   //create password array based on length
   for (let i = 0; i < leng; i++) {
@@ -52,38 +55,97 @@ function generatePassword() {
   passwordText.innerText = pass;
 }
 
-//confirm type of content in password
+// prompt password length between 8 and 128
+function passwordLength() {
+  length = parseInt(prompt("How long would you like your password to be?","insert password length between 8-128"));
+  if ( isNaN(length)){
+    alert ("Please input a number!");
+  } else if (length < 8 || length > 128){
+      length = parseInt(prompt("Please choose a password length between 8 and 128!"));
+  } else {
+      return length;
+    }
+}
+
+
+//establish password criteria
 function passwordContent() {
-  var upper = confirm("Would you like to use uppercase letters?");
-  var lower = confirm("Would you like to use lowercase letters?");
-  var numer = confirm("would you like to use numbers?");
-  var special = confirm("would you like to use special characters?");
-
-  while (!(upper || lower || numer || special)) {
-    alert("You must select at least 1 of the following: Upper Case Letter, Lower Case Letter, Numerical, Special Character.");
-
-    upper = confirm("Would you like to use uppercase letters?");
-    lower = confirm("Would you like to use lowercase letters?");
-    numer = confirm("would you like to use numbers?");
-    special = confirm("would you like to use special characters?");
+  //The following if statement accounts for all choice combinations
+  //choice combo: none selected
+  if (upper === false && lower === false && numer === false && special === false) {
+     chosen = alert("You must select at least 1 of the following: Upper Case Letter, Lower Case Letter, Numerical, Special Character.");
+  } 
+  //choice combo: 4 selected
+  else if (upper === true && lower === true && numer === true && special === true) {
+    chosen = upper.concat(lower, numer, special);
+  }  
+  //choice combo: 3 selected
+  else if (upper === true && lower === false && numer === true && special === true) {
+    chosen = upper.concat(numer, special);
   }
+  else if (upper === true && lower === true && numer === false && special === true) {
+    chosen = upper.concat(lower, special);
+  }
+  else if (upper === true && lower === true && numer === true && special === false) {
+    chosen = upper.concat(numer, lower);
+  }
+  else if (upper === false && lower === true && numer === true && special === true) {
+    chosen = lower.concat(numer, special);
+  }
+  //choice combo: 2 selected
+  else if (upper === true && lower === true && numer === false && special === false) {
+    chosen = upper.concat(lower);
+  }
+  else if (upper === true && lower === false && numer === true && special === false) {
+    chosen = upper.concat(numer);
+  }
+  else if (upper === true && lower === false && numer === false && special === true) {
+    chosen = upper.concat(special);
+  }
+  else if (upper === false && lower === true && numer === true && special === false) {
+    chosen = lower.concat(numer);
+  }
+  else if (upper === false && lower === true && numer === false && special === true) {
+    chosen = lower.concat(special);
+  }
+  else if (upper === false && lower === false && numer === true && special === true) {
+    chosen = numer.concat(special);
+  }
+  //choice combo: 1 selected
+  else if (upper === true && lower === false && numer === false && special === false) {
+    chosen = upper;
+  }
+  else if (upper === false && lower === true && numer === false && special === false) {
+    chosen = lower;
+  }
+  else if (upper === false && lower === false && numer === true && special === false) {
+    chosen = numer;
+  }
+  else if (upper === false && lower === false && numer === false && special === true) {
+    chosen = special;
+  };
 }
 
 
 //assign random values to password array
 function generateX() {
-  const xarr = [];
-  var content = passwordContent();
-  upper && xarr.push(getUpperCase());
-  lower && xarr.push(getLowerCase());
-  numer && xarr.push(getNumerical());
-  special && xarr.push(getSpecialCharacter());
-
-  return xs[Math.floor(Math.random() * xs.length)];
+  var xarr = [];
+  if (passwordhas.upper){
+    xarr.push(getUpperCase()); 
+  } else { console.log("no upper case selected.") }
+  if (passwordhas.lower) {
+    xarr.push(getLowerCase());
+  } else { console.log("no lower case selected.") }
+  if (passwordhas.numer) {
+    xarr.push(getNumerical());
+  } else { console.log("no numerical selected.") }
+  if (passwordhas.special) {
+    xarr.push(getSpecialCharacter());
+  } else { console.log("no special character selected.") }
+  alert(xarr);
+  return xarr[Math.floor(Math.random() * xarr.length)];
   
 }
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 //function writePassword() {
@@ -104,6 +166,5 @@ var generateBtn = document.querySelector("#generate");
 
 
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", generatePassword);
+
 
