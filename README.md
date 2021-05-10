@@ -12,26 +12,18 @@ This site will generate a password according to the following user-input paramet
 ## Initial User Interface
 
 The password parameters are determined by a series of prompts that occur after pressing the "Generate Password" button seen below:
-![User Interface](./ReadMe Images/User Interface.png)
 
-## Work Included
+![AltText](/ReadMe Images/User Interface.png)
 
-Some projects included in this portfolio are:
+## User Interaction
 
-```bash
-- Surf Report
-- LED Wall
-- Calculator
-- Pastel Puzzle
-- Run Buddy
-```
+User feedback is collected through the following prompts:
 
-## Questions?
+To specify password length:
 
-If you have any questions or would like to contact Asher with any opportunities:
-```python
-- Call: (510)230-8747
-- Email: asher.bergtraun@gmail.com
-- GitHub
-- LinkedIn
-```
+![AltText](/ReadMe Images/01_prompt.png)
+
+
+## Author
+
+Asher Bergtraun
