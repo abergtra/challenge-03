@@ -8,8 +8,8 @@ This site will generate a password according to the following user-input paramet
 - Whether the password will include numbers.
 - Whether the password will include special characters.
 ```
-Follow the link below to check it out:
-[Git Hub](https://abergtra.github.io/challenge-03/)
+Follow this link to check it out:
+[Password Generator](https://abergtra.github.io/challenge-03/)
 
 ## Initial User Interface
 
