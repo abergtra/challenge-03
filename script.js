@@ -15,28 +15,27 @@ var chosen;
 var generateBtn = document.querySelector("#generate");
 // Add event listener to generate button
 generateBtn.addEventListener("click", function () {
-  ps = generatePassword();
-  document.getElementById("password").placeholder = ps;
+  password = generatePassword();
+  document.getElementById("password").placeholder = password;
 });
 
 // Functions to randomly select characters
-function getLowerCase() {
-  return LowerCase[Math.floor(Math.random() * LowerCase.length)];
-}
-function getUpperCase() {
-  return UpperCase[Math.floor(Math.random() * UpperCase.length)];
-}
-function getNumeric() {
-  return Numeric[Math.floor(Math.random() * Numeric.length)];
-}
-function getSpecialCharacter() {
-  return SpecialCharacter[Math.floor(Math.random() * SpecialCharacter.length)];
-}
+//function getLowerCase() {
+  //return LowerCase[Math.floor(Math.random() * LowerCase.length)];
+//}
+//function getUpperCase() {
+ // return UpperCase[Math.floor(Math.random() * UpperCase.length)];
+//}
+//function getNumeric() {
+ // return Numeric[Math.floor(Math.random() * Numeric.length)];
+//}
+//function getSpecialCharacter() {
+  //return SpecialCharacter[Math.floor(Math.random() * SpecialCharacter.length)];
+//}
 
 //generate the password
 function generatePassword() {
   length = passwordLength();
-  alert("you chose password length: " + length);
 
   //select password character criteria
   upper = confirm("Would you like to use uppercase letters?");
@@ -44,16 +43,27 @@ function generatePassword() {
   numer = confirm("would you like to use numbers?");
   special = confirm("would you like to use special characters?");
   chosen = passwordContent();
+
+  //create empty password array 
   var pass = [];
 
-  //create password array based on length
-  for (let i = 0; i < leng; i++) {
-    const x = generateX();
-    pass += x;
+  //fill password array with random content to fill chosen length
+  for (var i = 0; i < length; i++) {
+    var randoChosen = chosen[Math.floor(Math.random() * chosen.length)];
+    pass.push(randoChosen);
   }
 
-  passwordText.innerText = pass;
+  //join array to create password and convert to string
+  var password = pass.join("");
+  passPlacement(password);
+  return password;
 }
+
+//place password in text box
+function passPlacement(password) {
+  document.getElementById("password").textContent = password;
+}
+
 
 // prompt password length between 8 and 128
 function passwordLength() {
@@ -64,7 +74,7 @@ function passwordLength() {
       length = parseInt(prompt("Please choose a password length between 8 and 128!"));
   } else {
       return length;
-    }
+    };
 }
 
 
@@ -125,46 +135,6 @@ function passwordContent() {
     chosen = special;
   };
 }
-
-
-//assign random values to password array
-function generateX() {
-  var xarr = [];
-  if (passwordhas.upper){
-    xarr.push(getUpperCase()); 
-  } else { console.log("no upper case selected.") }
-  if (passwordhas.lower) {
-    xarr.push(getLowerCase());
-  } else { console.log("no lower case selected.") }
-  if (passwordhas.numer) {
-    xarr.push(getNumerical());
-  } else { console.log("no numerical selected.") }
-  if (passwordhas.special) {
-    xarr.push(getSpecialCharacter());
-  } else { console.log("no special character selected.") }
-  alert(xarr);
-  return xarr[Math.floor(Math.random() * xarr.length)];
-  
-}
-
-// Write password to the #password input
-//function writePassword() {
- // var password = generatePassword();
- // var passwordText = document.querySelector("#password");
- // passwordText.value = password;
-
- // document.body.appendChild(passwordText);
- // let yiken = "";
-
- // for (let i = 0; i < len; i++) {
- //   const x = generateX();
- //   yiken += x;
- // }
-
- // pwEl.innerText = yiken;
-//}
-
-
 
 
 
