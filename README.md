@@ -8,6 +8,8 @@ This site will generate a password according to the following user-input paramet
 - Whether the password will include numbers.
 - Whether the password will include special characters.
 ```
+Follow the link below to check it out:
+[Git Hub](https://abergtra.github.io/challenge-03/)
 
 ## Initial User Interface
 
@@ -28,6 +30,7 @@ If a value outside 8-128 is entered, the following prompt will occur:
 ![AltText](images/02_prompt.png)
 
 If a non-number is input, the following alert will appear:
+
 ![AltText](images/03_prompt.png)
 
 An alert will confirm the password length you chose:
